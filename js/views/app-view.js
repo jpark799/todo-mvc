@@ -1,5 +1,5 @@
 // Our overall **AppView** is the top-level piece of UI.
-AppView = Backbone.View.extend({
+var AppView = Backbone.View.extend({
 
   // Instead of generating a new element, bind to the existing skeleton of
   // the App already present in the HTML.
@@ -18,14 +18,10 @@ AppView = Backbone.View.extend({
     this.listenTo(todosCollection, 'add', this.addOne);
   },
 
-  // Add a single todo item to the list by creating a view for it, and
-  // appending its element to the `<ul>`.
-
-addOne: function (todo) {
-  var view = new TodoView({ model: todo });
-  this.$list.append(view.render().el);
-},
-
+  addOne: function(todo) {
+    var view = new TodoView({ model: todo });
+    this.$list.append(view.render().el);
+  },
 
   createOnEnter: function (e) {
     if (e.which === 13 && this.$input.val()) {
@@ -33,7 +29,7 @@ addOne: function (todo) {
         title: this.$input.val(),
         completed: false
       });
-
+      console.log(todosCollection)      
       this.$input.val('');
     }
   }
